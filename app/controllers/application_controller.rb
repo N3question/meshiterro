@@ -1,6 +1,26 @@
 class ApplicationController < ActionController::Base
   # devise利用の機能（ユーザ登録、ログイン認証など）が使われる前に,configure_permitted_parametersメソッドが実行
   before_action :configure_permitted_parameters, if: :devise_controller?
+  
+  ## サインイン後にどこに遷移するかを設定
+      # after_sign_in_path_forはDeviseが用意しているメソッド
+      # 今回はAboutページへ遷移するように設定
+  def after_sign_in_path_for(resource)
+    about_path
+  end
+  
+  ## サインアウト後にどこに遷移するかを設定
+      # Deviseのデフォルトは同じくroot_path
+      # 今回はAboutページへ遷移するように設定
+  ## 投稿機能の作成 > モデル・テーブルの作成
+      # $ rails g model PostImageを実行
+          # モデル名の頭は大文字
+  ## NEXT migrationファイルの編集
+      # Go_to db/migrate/(作成日時)_create_lists.rb
+      
+  def after_sign_out_path_for(resource)
+    about_path
+  end
 
   protected
 
