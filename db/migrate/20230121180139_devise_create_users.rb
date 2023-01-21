@@ -39,6 +39,13 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
         # 名前を保存できるようになる
       ## $ rails db:migrate を実行
         # このファイルを使って、データベースへマイグレーションを行う
+      ## $ rails g devise:views を実行
+        # name を入力するフォームを作成するためには View ファイルが必要
+          # devise の機能を使って View ファイルを作成する
+          # 上書きしてカスタマイズできる
+          # rails g devise:views コマンドによって作成される View は、devise のさまざまな機能と関連付け
+      ## NEXT ユーザ登録の際に name も登録するため、フォームを追加
+        # Go_to app/views/devise/registrations の new.html.erb
       t.string :name
 
 
