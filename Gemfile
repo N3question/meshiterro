@@ -24,11 +24,11 @@ gem 'jbuilder', '~> 2.7'
 
 # Use Active Storage variant
 ## 画像のサイズ変更を行うGemの導入
-# コメントアウト解除済み
-  # image_processingを使える状態にする
+    # コメントアウト解除済み
+## image_processingを使える状態にする
     # $ bundle installというコマンドを実行
 ## NEXT エラー回避の対応
-  # Go_to config/environments/development.rb
+    # Go_to config/environments/development.rb
 gem 'image_processing', '~> 1.2'
 
 # Reduces boot times through caching; required in config/boot.rb
@@ -60,3 +60,17 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+## devise を meshiterro アプリケーションにインストール
+  # gem '[インストールしたい Gem の名前]
+## $ bundle install を実行
+  # ”Gemfile”に記述した Gem を、Rails アプリケーション内で使用できるようにインストールするためのコマンド
+## $ rails g devise:installを実行
+  # devise のインストールコマンドを実行
+## ユーザテーブルを作成してユーザ情報を保存
+  # $ rails g devise モデル名（頭大文字）を実行
+      # devise を使うと、記述が変わることに注意しましょう。rails g devise モデル名の記述は、devise 独自のルール
+      # 作成した User モデルに devise で使用する機能が記述されている
+## NEXT devise のユーザーテーブルをカスタマイズする
+  # Go_to db/migrate/（年月日時分秒）_devise_create_users.rb
+gem 'devise'
