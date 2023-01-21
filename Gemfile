@@ -23,7 +23,13 @@ gem 'jbuilder', '~> 2.7'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use Active Storage variant
-# gem 'image_processing', '~> 1.2'
+## 画像のサイズ変更を行うGemの導入
+# コメントアウト解除済み
+  # image_processingを使える状態にする
+    # $ bundle installというコマンドを実行
+## NEXT エラー回避の対応
+  # Go_to config/environments/development.rb
+gem 'image_processing', '~> 1.2'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
