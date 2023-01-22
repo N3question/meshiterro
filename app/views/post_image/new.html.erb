@@ -1,2 +1,16 @@
-<h1>PostImage#new</h1>
-<p>Find me in app/views/post_image/new.html.erb</p>
+<!--form_with を利用して、post_images_path/post_imagesに画像をアップロード-->
+  <!--画像アップロードフィールドは、f.file_field :image, accept: "image/*" で実装-->
+      <!--ルーティングはすでに resources で new アクションを設定しているため変更なし-->
+      <!--onlyオプションを使用している場合、resourcesのonly内にnewアクションの記述があるかを確認-->
+<!--NEXT PostImage をデータベースに登録する機能を作成-->
+  <!--Go_to app/controllers/post_image_controller-->
+<h1>画像投稿フォーム</h1>
+  <%= form_with model: @post_image do |f| %>
+    <h4>画像</h4>
+      <%= f.file_field :image, accept: "image/*" %>
+    <h4>ショップ名</h4>
+      <%= f.text_field :shop_name %>
+    <h4>説明</h4>
+      <%= f.text_area :caption %>
+    <%= f.submit '投稿' %>
+  <% end %>
