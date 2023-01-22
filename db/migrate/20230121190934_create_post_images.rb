@@ -8,9 +8,8 @@ class CreatePostImages < ActiveRecord::Migration[6.1]
   ## $ rails db:migrateを実行
       # db/schema.rbでテーブルが問題なく作成されているかを確認
 　## NEXT PostImage モデルに、ActiveStorage を使って画像を持たせる
-　   #
-　      # PostImage モデルの設定ファイルに、記述を追加する必要
-　      # PostImage モデルの設定ファイルは、app/models/post_image.rb 
+　    # PostImage モデルの設定ファイルに、記述を追加する必要
+　        # Go_to app/models/post_image.rb
   def change
     create_table :post_images do |t|
       t.string :shop_name # 追加

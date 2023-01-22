@@ -17,7 +17,6 @@ class ApplicationController < ActionController::Base
           # モデル名の頭は大文字
   ## NEXT migrationファイルの編集
       # Go_to db/migrate/(作成日時)_create_lists.rb
-      
   def after_sign_out_path_for(resource)
     about_path
   end
@@ -30,7 +29,7 @@ class ApplicationController < ActionController::Base
     # devise によってすでに機能自体は作成されている
     # 実装しなければならないのはログアウト用のリンクのみ
     # ログアウトはHTTPメソッドがDELETEであることに注意
-    # Go_to app/views/layouts/application.html.erb
+      # Go_to app/views/layouts/application.html.erb
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
   end
