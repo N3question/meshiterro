@@ -1,4 +1,4 @@
-class PostImageController < ApplicationController
+class PostImagesController < ApplicationController
   
   ## Viewへ渡すためのインスタンス変数に空のModelオブジェクトを生成する。
   ## NEXT Viewの作成
@@ -17,7 +17,7 @@ class PostImageController < ApplicationController
       #4 リダイレクト先の指定
   ## 同時にストロングパラメータも作成
   ## NEXT ルーティングの追加
-    # resources に create を追加し完了
+    # resources に :create を追加し完了
   def create
     @post_image = PostImage.new(post_image_params) #1
     @post_image.user_id = current_user.id #2
