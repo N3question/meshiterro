@@ -25,7 +25,12 @@ class PostImagesController < ApplicationController
     redirect_to post_images_path #4
   end
   
+  ## タイムライン上に表示する投稿データを取得できるようにする
+    # all => メソッドの一種
+      # そのモデルがやりとりしているデータベースのテーブルに保存されている、全てのレコードをまとめて取得
+  ## NEXT View => Go_to app/views/post_images/index.html.erbを
   def index
+    @post_images = PostImage.all
   end
 
   def show
