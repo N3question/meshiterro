@@ -21,11 +21,13 @@ class User < ApplicationRecord
         ## メソッドの部分を修正
             # メソッドに対して引数を設定し、受け取った引数のサイズに変換できるようにする
             # (resize_to_limit: [100,100]) => (resize_to_limit: [width, height])
-  ## NEXT ユーザーに関する機能を追加するためのコントローラ作成
+  ## ユーザーに関する機能を追加するためのコントローラ作成
     # $ rails g controller コントローラ名 アクション名 を実行
         # showアクション、editアクションはViewが必要なので同時に作成
         # コントローラ名は頭大文字の複数形
     ## ルーティングを確認
+  ## NEXT ユーザーの詳細ページを作成
+    # Go_to app/controllers/users_controller.rb
   has_one_attached :profile_image
   
   def get_profile_image
