@@ -33,7 +33,10 @@ class PostImagesController < ApplicationController
     @post_images = PostImage.all
   end
 
+  ## 詳細画面が表示されるように設定
+  ## NEXT app/views/post_imagesフォルダ内にshow.html.erbファイルを作成
   def show
+    @post_image = PostImage.find(params[:id])
   end
   
   ## 投稿データのストロングパラメータ

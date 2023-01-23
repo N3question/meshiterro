@@ -9,6 +9,8 @@ class ApplicationController < ActionController::Base
       # ログイン後の遷移先を投稿画像の一覧画面
       # deviseの章で学習したafter_sign_in_path_forを編集して、遷移先を変更
         # about_path => post_images_path に変更
+  ## NEXT 投稿画像の詳細ページを設定
+    # Go_to post_images_controller.rb
   def after_sign_in_path_for(resource)
     post_images_path
   end

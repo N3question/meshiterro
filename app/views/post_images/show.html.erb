@@ -1,0 +1,15 @@
+<!--投稿画像の詳細ページを設定-->
+  <!--'%Y/%m/%d' => 年/月/日のフォーマットへ変換-->
+      <!--投稿日付の形式を変換しているメソッド-->
+<!--ルーティングを確認-->
+  <!--resourcesのshowですでに設定されているため変更を加える必要なし-->
+<!--NEXT 一覧画面に詳細画面リンクを設定-->
+  <!--Go_to app/views/post_images/index.html.erb-->
+<div>
+  <%= image_tag @post_image.get_image %>
+  <p>ショップ名：<%= @post_image.shop_name %></p>
+  <p>説明：<%= @post_image.caption %></p>
+  <p>投稿ユーザー画像：<%= image_tag 'sample-author1.jpg' %></p>
+  <p>ユーザーネーム：<%= @post_image.user.name %></p>
+  <p>投稿日：<%= @post_image.created_at.strftime('%Y/%m/%d') %></p>
+</div>

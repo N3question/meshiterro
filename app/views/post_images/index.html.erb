@@ -23,6 +23,14 @@
 <!--NEXT ログイン後の遷移先を変更 Go_to app/controllers/application_controller.rb-->
 <% @post_images.each do |post_image| %> 
 <div>
+  
+  <!--一覧画面に、詳細画面へのリンクを追加-->
+    <!--link_to => doからendの間が、aタグで囲まれた状態-->
+      <!--image_tag = aタグに囲まれたimgタグ-->
+  <%= link_to post_image_path(post_image.id) do %>
+    <%= image_tag post_image.get_image %>
+  <% end %>
+  
   <%= image_tag post_image. get_image %>
   <p>投稿ユーザー画像:<%=image_tag 'sample-author1.jpeg' %></p>
   <p>ショップ名:<%= post_image. shop_name %></p>
