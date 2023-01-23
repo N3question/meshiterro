@@ -1,41 +1,48 @@
 <!--投稿一覧の作成-->
-  <!--@post_images.each do |post_image|-->
-        <!--コントローラから渡された@post_images変数内から1つずつ取り出して、post_image変数へ格納-->
-    <!--image_tag post_image. get_image-->
+    <!--@post_images.each do |post_image|-->
+          <!--コントローラから渡された@post_images変数内から1つずつ取り出して、post_image変数へ格納-->
+      <!--image_tag post_image. get_image-->
           <!--image_tagを使いpost_imageにActiveStorageで設定したimageを表示-->
           <!--post_image.get_imageの部分はPostImageモデル内に記述したメソッドを呼び出し-->
-    <!--image_tag 'sample-author1.jpeg'-->
+      <!--image_tag 'sample-author1.jpeg'-->
           <!--後半の章でユーザー画像設定について学習-->
           <!--あとで書き換える-->
-    <!--post_image.caption-->
+      <!--post_image.shop_name-->
           <!--post_image変数 => shop_nameカラムを表示-->
                                 <!--post_imageモデルに定義-->
-    <!--post_image.caption-->
+      <!--post_image.caption-->
           <!--post_image変数 => captionカラムを表示-->
                                 <!--post_imageモデルに定義-->
-    <!--post_image.user.name-->
+      <!--post_image.user.name-->
           <!--post_image変数のuser_idに関連付け => userモデルのnameカラムを表示-->
                                                     <!--post_imageモデルに定義-->
           <!--nameカラム以外にも、ユーザーモデルにカラムとして定義されている情報であれば取得可能-->
               <!--post_image.user.[ユーザーモデルのカラム]-->
 <!--ルーティングの確認-->
-    <!--すでにresourcesでindexアクション用のルーティングが設定されているため編集する必要はなし-->
-<!--NEXT ログイン後の遷移先を変更 Go_to app/controllers/application_controller.rb-->
+        <!--すでにresourcesでindexアクション用のルーティングが設定されているため編集する必要はなし-->
+  <!--NEXT ログイン後の遷移先を変更 Go_to app/controllers/application_controller.rb-->
+
+<!--一覧画面に、詳細画面へのリンクを追加-->
+        <!--もともと記述してあったimage_tag post_image. get_imageは削除する-->
+            <!--link_to => doからendの間が、aタグで囲まれた状態-->
+            <!--image_tag = aタグに囲まれたimgタグ-->
+  <!--NEXT 投稿削除機能を実装 Go_to post_images_controller.rb -->
+
+<!--ダミーで表示させていた画像の記述を変更-->
+        <!--post_images/index-->
+        <!--image_tag 'sample-author1.jpeg' => image_tag post_image.user.get_profile_image(100,100)-->
+            <!--image_tagには、post_image.userと記述-->
+              <!--Userモデルに定義したget_profile_imageメソッドも使える-->
+  <!--NEXT Go_to app/views/post_images/show.html.erb-->
+        
 <% @post_images.each do |post_image| %> 
 <div>
-  
-  <!--一覧画面に、詳細画面へのリンクを追加-->
-  <!--もともと記述してあったimage_tag post_image. get_imageは削除する-->
-    <!--link_to => doからendの間が、aタグで囲まれた状態-->
-      <!--image_tag = aタグに囲まれたimgタグ-->
-  <!--NEXT 投稿削除機能を実装-->
-    <!--Go_to post_images_controller.rb-->
   <%= link_to post_image_path(post_image.id) do %>
     <%= image_tag post_image.get_image %>
   <% end %>
-  <p>投稿ユーザー画像:<%=image_tag 'sample-author1.jpeg' %></p>
-  <p>ショップ名:<%= post_image. shop_name %></p>
-  <p>説明:<%= post_image. caption %></p>
+  <p>投稿ユーザー画像:<%= image_tag post_image.user.get_profile_image(100,100) %></p>
+  <p>ショップ名:<%= post_image.shop_name %></p>
+  <p>説明:<%= post_image.caption %></p>
   <p>ユーザーネーム:<%= post_image. user.name %></p>
 </div>
 <%end%>

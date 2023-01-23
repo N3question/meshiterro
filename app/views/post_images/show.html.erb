@@ -1,24 +1,26 @@
 <!--投稿画像の詳細ページを設定-->
-    <!--'%Y/%m/%d' => 年/月/日のフォーマットへ変換-->
-        <!--投稿日付の形式を変換しているメソッド-->
-    <!--ルーティングを確認-->
-        <!--resourcesのshowですでに設定されているため変更を加える必要なし-->
-    <!--NEXT 一覧画面に詳細画面リンクを設定-->
+      <!--'%Y/%m/%d' => 年/月/日のフォーマットへ変換-->
+          <!--投稿日付の形式を変換しているメソッド-->
+      <!--ルーティングを確認-->
+          <!--resourcesのshowですでに設定されているため変更を加える必要なし-->
+  <!--NEXT 一覧画面に詳細画面リンクを設定-->
       <!--Go_to app/views/post_images/index.html.erb-->
 <!--削除リンクを追加-->
-    <!--if式を用いてる箇所の解説-->
-      <!--もし、投稿者 == 現在ログインしているユーザ だったら-->
-        <!--削除ボタン-->
-      <!--終わり-->
-<!--NEXT ユーザー情報の閲覧や編集に関する実装-->
-    <!--ActiveStorageを使用する準備-->
-    <!--ページの表示に必要なルーティングの設定-->
-        <!--Go_to app/models/user.rb-->
+      <!--if式を用いてる箇所の解説-->
+        <!--もし、投稿者 == 現在ログインしているユーザ だったら-->
+          <!--削除ボタン-->
+        <!--終わり-->
+  <!--NEXT ユーザー情報の閲覧や編集に関する実装-->
+      <!--ActiveStorageを使用する準備-->
+      <!--ページの表示に必要なルーティングの設定-->
+          <!--Go_to app/models/user.rb-->
+<!--ダミーで表示させていた画像の記述を変更-->
+      <!--image_tag 'sample-author1.jpg' => image_tag @post_image.user.get_profile_image(100,100)-->
 <div>
   <%= image_tag @post_image.get_image %>
   <p>ショップ名：<%= @post_image.shop_name %></p>
   <p>説明：<%= @post_image.caption %></p>
-  <p>投稿ユーザー画像：<%= image_tag 'sample-author1.jpg' %></p>
+  <p>投稿ユーザー画像：<%= image_tag @post_image.user.get_profile_image(100,100) %></p>
   <p>ユーザーネーム：<%= @post_image.user.name %></p>
   <p>投稿日時：<%= @post_image.created_at.strftime('%Y/%m/%d') %></p>
   
