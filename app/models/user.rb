@@ -11,4 +11,28 @@ class User < ApplicationRecord
   ## NEXT PostImage モデルに User モデルを関連付ける
     # Go_to app/models/post_image.rb
   has_many :post_images, dependent: :destroy
+  
+  ## ユーザーごとのプロフィール画像を保存できないため追記
+        # has_one_attached :profile_image
+            # profile_imageという名前でActiveStorageでプロフィール画像を保存できるように設定
+        # profile_image.variant(resize_to_limit: [100, 100]).processed
+            # 画像を縦横共に100pxのサイズに変換
+            # これだけだと利便性がそこまで高くない！！！
+        ## メソッドの部分を修正
+            # メソッドに対して引数を設定し、受け取った引数のサイズに変換できるようにする
+            # (resize_to_limit: [100,100]) => (resize_to_limit: [width, height])
+  ## NEXT ユーザーに関する機能を追加するためのコントローラ作成
+    # $ rails g controller コントローラ名 アクション名 を実行
+        # showアクション、editアクションはViewが必要なので同時に作成
+        # コントローラ名は頭大文字の複数形
+    ## ルーティングを確認
+  has_one_attached :profile_image
+  
+  def get_profile_image
+    unless profile_image.attached?
+      file_path = Rails.root.join('app/assets/images/sample-author1.jpg')
+      profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+    end
+    profile_image.variant(resize_to_limit: [width, height]).processed
+  end
 end
