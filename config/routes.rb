@@ -31,6 +31,9 @@ Rails.application.routes.draw do
   # get 'users/show'
   # get 'users/edit'
     # controller作成時にアクション作成 => 自動作成
-  resources :users, only: [:show, :edit]
+  ## 追記（updateアクション作成後）=> :update
+    # NEXT 編集画面へのリンクを追加
+        # Go_to app/views/users/show.html.erb
+  resources :users, only: [:show, :edit, :update]
   
 end

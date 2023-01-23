@@ -1,14 +1,29 @@
 <!--詳細と投稿一覧を作成する-->
-  <!--ルーティングを確認-->
-    <!--変更はなし-->
-    <!--showアクションがresourcesのonly内に記述されているかを確認-->
-<!--NEXT マイページへのリンクを、ヘッダーに設定-->
-  <!--Go_to app/views/layouts/application.html.erb-->
-
+      <!--ルーティングを確認-->
+        <!--変更はなし-->
+        <!--showアクションがresourcesのonly内に記述されているかを確認-->
+  <!--NEXT マイページへのリンクを、ヘッダーに設定-->
+      <!--Go_to app/views/layouts/application.html.erb-->
+<!--ユーザーの詳細ページにも編集ページへのリンクを追加-->
+      <!--link_to "プロフィール編集", パス名-->
+      <!--$ rails routesで確認可能-->
+  <!--NEXT 更新機能を作成-->
+      <!--Go_to app/controllers/users_controller.rb-->
+<!--編集画面へのリンクを追加-->
+      <!--ログインしているユーザーに本人のみ、編集リンクを表示させる-->
+      <!--画面に表示しているユーザーと、ログインしているユーザーのIDが一致するか確認-->
+      <!--devise　ヘルパーメソッド-->
+        <!--if @user == current_user-->
+          <!--Userモデルに紐付いたカラムの情報も取得できる-->
+          <!--current_user.カラム名-->
+      
 <!-- ユーザーの詳細 -->
 <div>
   <h3><%= @user.name %></h3>
   <%= image_tag @user.get_profile_image(100,100) %>
+  <% if @user == current_user %>
+    <%= link_to "プロフィール編集", edit_user_path(@user) %>
+  <%end%>
 </div>
 
 <!-- ユーザーの投稿一覧 -->

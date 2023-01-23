@@ -13,6 +13,28 @@ class UsersController < ApplicationController
     @post_images = @user.post_images
   end
 
+  ## 編集画面の作成 => 編集機能用のアクションを定義
+  ## NEXT app/views/usersフォルダ内に、edit.html.erbファイルを作成
   def edit
+    @user = User.find(params[:id])
   end
+  
+  ## 更新機能を作成
+  ## データを受け取るためのparamsも同時に作成
+  ## NEXT ルーティングの編集 Go_to config/routes.rb
+  def update
+    @user = User.find(params[:id])
+    @user.update(user_params)
+    redirect_to user_path(current_user.id)
+  end
+  
+  private
+  
+  ## データ受け取りのためのparams
+    # reqire データの絞り込み
+    # permit 絞り込んだデータの中から保存する内容を選択
+  def user_params
+    params.require(:user).permit(:name, :profile_image)
+  end
+  
 end
