@@ -18,10 +18,13 @@ Rails.application.routes.draw do
   ## 追記（createアクション作成後）=> :create
     # NEXT ヘッダーに投稿フォームへのリンクを追加 
       # Go_to app/views/layouts/application.html.erb
+  ## 追記（destroyアクション作成後）=> :destroy
+    # NEXT 詳細画面に削除を実行するためのリンクを追記
+      # Go_to app/views/post_images/show.html.erb
   # get 'post_image/new'
   # get 'post_image/index'
   # get 'post_image/show'
-  resources :post_images, only: [:new, :create, :index, :show]
+  resources :post_images, only: [:new, :create, :index, :show, :destroy]
   
   get 'homes/about'=>'homes#about' ,as:'about' # 追加。homes/aboutのルーティングに about ページを設定
   

@@ -39,6 +39,22 @@ class PostImagesController < ApplicationController
     @post_image = PostImage.find(params[:id])
   end
   
+  ## 投稿削除機能を実装
+    # @post_image = PostImage.find(params[:id])
+        # データ（レコード）を一件取得
+    # @post_image.destroy
+        # データ（レコード）を削除
+    # redirect_to post_images_path
+        # 投稿一覧画面へリダイレクト
+          # 投稿の削除後は一覧に遷移する
+  ## destoryアクションへのルーティング設定
+    # routes.rbのresourcesの部分にdestroyを追記
+  def destroy
+    @post_image = PostImage.find(params[:id])
+    @post_image.destroy
+    redirect_to post_images_path
+  end
+  
   ## 投稿データのストロングパラメータ
     # params
         # formから送られてくるデータはparamsの中に入っている
