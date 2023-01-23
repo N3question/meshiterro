@@ -5,8 +5,12 @@ class ApplicationController < ActionController::Base
   ## サインイン後にどこに遷移するかを設定
       # after_sign_in_path_forはDeviseが用意しているメソッド
       # 今回はAboutページへ遷移するように設定
+  ## サインイン後の遷移先を変更
+      # ログイン後の遷移先を投稿画像の一覧画面
+      # deviseの章で学習したafter_sign_in_path_forを編集して、遷移先を変更
+        # about_path => post_images_path に変更
   def after_sign_in_path_for(resource)
-    about_path
+    post_images_path
   end
   
   ## サインアウト後にどこに遷移するかを設定
