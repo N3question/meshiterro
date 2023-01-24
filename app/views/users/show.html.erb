@@ -19,7 +19,7 @@
   <!--NEXT ダミーで表示させていた画像の記述を変更-->
       <!--Go_to app/views/post_images/index.html.erb-->
 
-<!-- ユーザーの詳細 -->
+<!--ユーザーの詳細を作成-->
 <div>
   <h3><%= @user.name %></h3>
   <%= image_tag @user.get_profile_image(100,100) %>
@@ -28,7 +28,11 @@
   <%end%>
 </div>
 
-<!-- ユーザーの投稿一覧 -->
+<!--ユーザーの投稿一覧を作成-->
+  <!--コメント件数の表示-->
+    <!--link_to "#{post_image.post_comments.count} コメント", post_image_path(post_image.id)を追加-->
+    <!--サーバを起動し動作の確認をする-->
+  <!--NEXT コメント削除機能の実装 Go_to post_comments_controller.rb-->
 <% @post_images.each do |post_image| %>
 <div>
   <%= link_to post_image_path(post_image.id) do %>
@@ -38,5 +42,6 @@
   <p>ショップ名:<%= post_image.shop_name %></p>
   <P>説明:<%= post_image.caption %></P>
   <p>ユーザーネーム:<%= post_image.user.name %></p>
+  <p><%= link_to "#{post_image.post_comments.count} コメント", post_image_path(post_image.id) %></p>
 </div>
 <%end%>

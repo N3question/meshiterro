@@ -15,15 +15,12 @@
           <!--ログイン済みの場合：if user_signed_in? から  else 間のコードが表示-->
           <!--ログインしていない場合：else から end 間のコードが表示-->
     <!--NEXT devise のフォームヘルパーを変更-->
-        <!--ユーザー登録画面のログイン画面-->
-            <!--Go_to app/views/devise/registrations/new.html.erb-->
+        <!--ユーザー登録画面のログイン画面 Go_to app/views/devise/registrations/new.html.erb-->
     <!--追記：createアクション作成後 => 投稿フォームへのリンク-->
-        <!--NEXT 投稿したPostImageを一覧表示する一覧画面を作成-->
-            <!--Go_to models/post_image.rb-->
+        <!--NEXT 投稿したPostImageを一覧表示する一覧画面を作成 Go_to models/post_image.rb-->
     <!--追記：ユーザー詳細画面の作成後-->
         <!--link_to 'マイページ', user_path(current_user.id)-->
-    <!--NEXT 編集機能用のアクションを定義-->
-        <!--Go_to app/controllers/users_controller.rb-->
+    <!--NEXT 編集機能用のアクションを定義 Go_to app/controllers/users_controller.rb-->
   <body>
     <header>
       <% if user_signed_in? %> 

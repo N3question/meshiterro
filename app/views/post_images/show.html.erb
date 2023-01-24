@@ -6,16 +6,24 @@
   <!--NEXT 一覧画面に詳細画面リンクを設定-->
       <!--Go_to app/views/post_images/index.html.erb-->
 <!--削除リンクを追加-->
-      <!--if式を用いてる箇所の解説-->
-        <!--もし、投稿者 == 現在ログインしているユーザ だったら-->
-          <!--削除ボタン-->
-        <!--終わり-->
+        <!--if式を用いてる箇所の解説-->
+            <!--もし、投稿者 == 現在ログインしているユーザ だったら-->
+              <!--削除ボタン-->
+            <!--終わり-->
   <!--NEXT ユーザー情報の閲覧や編集に関する実装-->
-      <!--ActiveStorageを使用する準備-->
-      <!--ページの表示に必要なルーティングの設定-->
+        <!--ActiveStorageを使用する準備-->
+        <!--ページの表示に必要なルーティングの設定-->
           <!--Go_to app/models/user.rb-->
 <!--ダミーで表示させていた画像の記述を変更-->
-      <!--image_tag 'sample-author1.jpg' => image_tag @post_image.user.get_profile_image(100,100)-->
+        <!--image_tag 'sample-author1.jpg' => image_tag @post_image.user.get_profile_image(100,100)-->
+<!--コメント機能を作成->
+        <!--必要なファイルを準備する-->
+          <!--$ rails g model PostComment comment:text user_id:integer post_image_id:integer を実行-->
+              <!--PostComment という名でモデルを作成-->
+                <!--頭大文字、単数形-->
+                <!--user_idとpost_image_id => 誰の投稿か、どの画像に投稿したのかがわかるようにしている-->
+          <!--$ rails db:migrate を実行-->
+  <!--NEXT 関連付けを追加 Go_to app/models/user.rb-->
 <div>
   <%= image_tag @post_image.get_image %>
   <p>ショップ名：<%= @post_image.shop_name %></p>
@@ -27,5 +35,33 @@
   <% if @post_image.user == current_user %>
     <%= link_to "削除", post_image_path(@post_image), method: :delete %>
   <%end%>
-  
+</div>
+
+<!--投稿画像の詳細画面で、コメントを投稿できるようにする-->
+      <!--投稿画像へのコメント、コメント数も表示-->
+<!--削除ボタンを表示させる-->
+      <!--if~endを追加-->
+      <!--コメントしたものがログインユーザーのものであれば削除ボタンを表示-->
+      <!--$ rails sで動作確認-->
+<div>
+  <p>コメント件数:<%= @post_image.post_comments.count %></p>
+  <% @post_image.post_comments. each do |post_comment| %>
+    <p><%= image_tag post_comment.user.get_profile_image(100,100) %></p>
+    <%= post_comment.user.name %>
+    <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
+    <% if post_comment.user == current_user %>
+      <%= link_to "削除", post_image_post_comment_path(post_comment.post_image, post_comment), method: :delete %>
+    <%end%>
+  <%end%>
+</div>
+
+<!--form_with => [@post_image,@post_comment]配列でインスタンス変数を2つ指定している点に注意-->
+<!--コメントは、post_imageに結びついたpost_commentであるため、2つ用意する必要-->
+<!--post_commentをcreateするリクエスト => ルーティングもネスト（親子関係）しているため、上記2つの情報が必要-->
+<!--NEXT コメント件数の表示 Go_to app/views/post_images/index.html.erb と app/views/users/show.html.erb-->
+<div>
+  <%= form_with model: [@post_image, @post_comment] do |f| %>
+    <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+    <%= f.submit "送信する" %>
+  <%end%>
 </div>

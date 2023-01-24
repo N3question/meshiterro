@@ -14,18 +14,22 @@ Rails.application.routes.draw do
         # 不要なルーティングが実行されないようにonlyを設定
       # ルーティングの確認
         # rails routes コマンドを実行
-  ## NEXT 投稿画面の作成
-      # Go_to app/controllers/post_image_controller.rb
+  ## NEXT 投稿画面の作成 Go_to app/controllers/post_image_controller.rb
   ## 追記（createアクション作成後）=> :create
-    # NEXT ヘッダーに投稿フォームへのリンクを追加 
-        # Go_to app/views/layouts/application.html.erb
+    # NEXT ヘッダーに投稿フォームへのリンクを追加 Go_to app/views/layouts/application.html.erb
   ## 追記（destroyアクション作成後）=> :destroy
-    # NEXT 詳細画面に削除を実行するためのリンクを追記
-        # Go_to app/views/post_images/show.html.erb
-  # get 'post_image/new'
-  # get 'post_image/index'
-  # get 'post_image/show'
-  resources :post_images, only: [:new, :create, :index, :show, :destroy]
+    # NEXT 詳細画面に削除を実行するためのリンクを追記 Go_to app/views/post_images/show.html.erb
+  ## コメント投稿のルーティングを設定
+        # do ~ end間の記述追加
+          # post_commentsは、post_imagesに結びつく
+          # $ rails routes を実行して確認してみる
+          # このような親子関係を「ネストする」という
+            # ネストしたURLを作成 => params[:post_image_id]でPostImageのidが取得可能
+  ## NEXT コメント作成用のcreateアクション作成 Go_to app/controllers/post_comments_controller.rb
+  ## post_comments に追記(コメント削除用のdestroyアクション作成後) => :destroy
+  resources :post_images, only: [:new, :create, :index, :show, :destroy] do
+    resources :post_comments, only: [:create, :destroy]
+  end
   
   ## resourcesとonlyを使って、show, editのアクションのみ追加
   # get 'users/show'

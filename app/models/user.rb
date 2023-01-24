@@ -12,6 +12,13 @@ class User < ApplicationRecord
     # Go_to app/models/post_image.rb
   has_many :post_images, dependent: :destroy
   
+  ## コメント機能の実装
+    # UserモデルとPostCommentモデルとの1:Nの関係も実装
+    # dependent: :destroy
+      # Userのデータが削除されたとき、そのUserが投稿したコメントデータも一緒に削除
+  ## NEXT Go_to app/models/post_image.rb
+  has_many :post_comments, dependent: :destroy  
+    
   ## ユーザーごとのプロフィール画像を保存できないため追記
         # has_one_attached :profile_image
             # profile_imageという名前でActiveStorageでプロフィール画像を保存できるように設定

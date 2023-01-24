@@ -35,8 +35,12 @@ class PostImagesController < ApplicationController
 
   ## 詳細画面が表示されるように設定
   ## NEXT app/views/post_imagesフォルダ内にshow.html.erbファイルを作成
+  ## コメントを投稿するためのインスタンス変数を定義
+    # @post_comment = PostComment.new を追加
+  ## NEXT Viewの作成 Go_to app/views/post_images/show.html.erb
   def show
     @post_image = PostImage.find(params[:id])
+    @post_comment = PostComment.new
   end
   
   ## 投稿削除機能を実装

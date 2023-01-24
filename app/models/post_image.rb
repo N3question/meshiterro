@@ -1,10 +1,10 @@
 class PostImage < ApplicationRecord
-  ## PostImage モデルに、ActiveStorage を使って画像を持たせる
+  ## ActiveStorage を使って画像を持たせる
   ## NEXT 1:N の関係性をモデルに実装
     # Go_to app/models/user.rb
   has_one_attached :image
   
-  ## PostImage モデルに User モデルを関連付け
+  ## User モデルを関連付け
     # PostImage モデルに対して、User モデルとの関係性を追加
       # PostImage モデルに関連付けられるのは、1 つの User モデルだけ
       # 単数形の「user」になっている点に注意
@@ -14,6 +14,10 @@ class PostImage < ApplicationRecord
   ## NEXT ルーティングの確認
     # Go_to config/routes.rb
   belongs_to :user
+  
+  ## 関連付けを追加
+  ## NEXT Userモデル,PostImageモデルの関連付け Go_to app/models/post_comment.rb
+  has_many :post_comments, dependent: :destroy
   
   ### 投稿したPostImageを一覧表示する一覧画面を作成
       # get_imageというメソッドを作成
