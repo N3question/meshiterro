@@ -1,0 +1,31 @@
+ <!--部分テンプレートの作成-->
+  <!--1. 共通化できる部分を探し出す-->
+      <!--部分テンプレートを作る前の準備で、現在のViewファイルを確認する作業-->
+  <!--2. 部分テンプレートファイルを作成する-->
+      <!--手順2～手順5は部分テンプレートファイル内での作業-->
+  <!--3. 共通化するコードを切り取る-->
+  <!--4. 部分テンプレートファイルに共通化部分を記述する-->
+  <!--5. 部分テンプレート用にコードを書き換える-->
+  <!--6. 部分テンプレートファイルを呼び出す-->
+      <!--各ファイル内での作業-->
+  <!--共通化に必要なもの-->
+      <!--部分テンプレートファイル（erbファイル）-->
+      <!--各ファイル内に部分テンプレートを呼び出す記述-->
+          <!--先頭にアンダースコア（_）付きのファイル => 部分テンプレートファイルとして認識-->
+<!--部分テンプレート用にコードを変更-->
+  <!--@post_images => post_imagesに変更-->
+<!--それぞれのファイルから、部分テンプレートファイルを呼び出す-->
+  <!--Go_to post_images/index.html.erb-->
+  <!--Go_to users/show.html.erb-->
+<% post_images.each do |post_image| %>
+<div>
+  <%= link_to post_image_path(post_image.id) do %>
+    <%= image_tag post_image.get_image %>
+  <%end%>
+  <p>投稿ユーザー画像:<%= image_tag post_image.user.get_profile_image(100,100) %></p>
+  <p>ショップ名:<%= post_image.shop_name %></p>
+  <P>説明:<%= post_image.caption %></P>
+  <p>ユーザーネーム:<%= post_image.user.name %></p>
+  <p><%= link_to "#{post_image.post_comments.count} コメント", post_image_path(post_image.id) %></p>
+</div>
+<%end%>

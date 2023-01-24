@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     #.View ページの作成
     # Go_to app/views/users/show.html.erb
   def show
-    @user = User.find(params[:id])
+    @user = User.find(current_user.id)
     @post_images = @user.post_images
   end
 

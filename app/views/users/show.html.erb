@@ -33,15 +33,22 @@
     <!--link_to "#{post_image.post_comments.count} コメント", post_image_path(post_image.id)を追加-->
     <!--サーバを起動し動作の確認をする-->
   <!--NEXT コメント削除機能の実装 Go_to post_comments_controller.rb-->
-<% @post_images.each do |post_image| %>
-<div>
-  <%= link_to post_image_path(post_image.id) do %>
-    <%= image_tag post_image.get_image %>
-  <%end%>
-  <p>投稿ユーザー画像:<%= image_tag post_image.user.get_profile_image(100,100) %></p>
-  <p>ショップ名:<%= post_image.shop_name %></p>
-  <P>説明:<%= post_image.caption %></P>
-  <p>ユーザーネーム:<%= post_image.user.name %></p>
-  <p><%= link_to "#{post_image.post_comments.count} コメント", post_image_path(post_image.id) %></p>
-</div>
-<%end%>
+<!-- @post_images.each do |post_image| -->
+<!--<div>-->
+<!--   link_to post_image_path(post_image.id) do -->
+<!--     image_tag post_image.get_image -->
+<!--   end -->
+<!--  <p>投稿ユーザー画像: image_tag post_image.user.get_profile_image(100,100) </p>-->
+<!--  <p>ショップ名: post_image.shop_name </p>-->
+<!--  <P>説明: post_image.caption </P>-->
+<!--  <p>ユーザーネーム: post_image.user.name </p>-->
+<!--  <p>< link_to "#{post_image.post_comments.count} コメント", post_image_path(post_image.id) </p>-->
+<!--</div>-->
+<!-- end -->
+
+<!--[新]ユーザーの投稿一覧-->
+  <!--部分テンプレートファイルを呼び出す-->
+    <!--違うフォルダに部分テンプレートがあるため、フォルダ名も指定する必要-->
+  <!--render [部分テンプレートファイルの指定], [ローカル変数]:[渡す値]-->
+<!--サーバを起動し確認-->
+<%= render 'post_images/list', post_images: @post_images %>

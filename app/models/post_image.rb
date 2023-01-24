@@ -20,7 +20,7 @@ class PostImage < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   
   ## 関連付けを追加
-  ## favorited_by?メソッドを作成(下記)
+  ## favorited_by?メソッドを作成(下の方に追加)
     # 引数で渡されたユーザidがFavoritesテーブル内に存在（exists?）するかどうか
   has_many :favorites, dependent: :destroy
   
@@ -58,7 +58,7 @@ class PostImage < ApplicationRecord
   end
   
   ## favorited_by?メソッドを作成
-  ## NEXT Userモデルに関連付けを追加
+  ## NEXT Userモデルに関連付けを追加 Go_to app/models/user.rb
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end
