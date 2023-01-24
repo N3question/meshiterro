@@ -43,6 +43,13 @@
       <!--if~endを追加-->
       <!--コメントしたものがログインユーザーのものであれば削除ボタンを表示-->
       <!--$ rails sで動作確認-->
+<!--いいね機能を作成-->
+      <!--$ rails g model Favorite user_id:integer post_image_id:integerを実行-->
+      <!--$ rails db:migrateを実行-->
+  <!--NEXT Favoriteモデルのカラムの関連付け Go_to app/models/favorite.rb-->
+      <!--Favoriteモデルのカラム（user_idとpost_image_id） 
+      => Userモデルのid,PostImageモデルのidと関連付けが必要-->
+      
 <div>
   <p>コメント件数:<%= @post_image.post_comments.count %></p>
   <% @post_image.post_comments. each do |post_comment| %>

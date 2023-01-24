@@ -19,6 +19,11 @@ class PostImage < ApplicationRecord
   ## NEXT Userモデル,PostImageモデルの関連付け Go_to app/models/post_comment.rb
   has_many :post_comments, dependent: :destroy
   
+  ## 関連付けを追加
+  ## favorited_by?メソッドを作成(下記)
+    # 引数で渡されたユーザidがFavoritesテーブル内に存在（exists?）するかどうか
+  has_many :favorites, dependent: :destroy
+  
   ### 投稿したPostImageを一覧表示する一覧画面を作成
       # get_imageというメソッドを作成
         # アクションとは少し違い、特定の処理を名前で呼び出すことができる
@@ -50,6 +55,12 @@ class PostImage < ApplicationRecord
       image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
     end
     image
+  end
+  
+  ## favorited_by?メソッドを作成
+  ## NEXT Userモデルに関連付けを追加
+  def favorited_by?(user)
+    favorites.exists?(user_id: user.id)
   end
   
 end
