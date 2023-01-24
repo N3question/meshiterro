@@ -24,6 +24,11 @@
                 <!--user_idとpost_image_id => 誰の投稿か、どの画像に投稿したのかがわかるようにしている-->
           <!--$ rails db:migrate を実行-->
   <!--NEXT 関連付けを追加 Go_to app/models/user.rb-->
+<!--いいね機能の実装-->
+      <!--投稿画像に付けられた「いいね」に、自分（ログインユーザ）を含むか判断するための記述-->
+      <!--「含まれるとき／含まれないとき」で、表示と機能を分けている-->
+      <!--リンクのaタグのメソッドを、条件によって変えている-->
+      <!--サーバを起動して確認-->
 <div>
   <%= image_tag @post_image.get_image %>
   <p>ショップ名：<%= @post_image.shop_name %></p>
@@ -31,10 +36,22 @@
   <p>投稿ユーザー画像：<%= image_tag @post_image.user.get_profile_image(100,100) %></p>
   <p>ユーザーネーム：<%= @post_image.user.name %></p>
   <p>投稿日時：<%= @post_image.created_at.strftime('%Y/%m/%d') %></p>
-  
   <% if @post_image.user == current_user %>
     <%= link_to "削除", post_image_path(@post_image), method: :delete %>
   <%end%>
+  <% if @post_image.favorited_by?(current_user) %>
+      <p>
+        <%= link_to post_image_favorites_path(@post_image), method: :delete do %>
+          ♥<%= @post_image.favorites.count %> いいね
+        <%end%>
+      </p>
+      <%else%>
+      <p>
+        <%= link_to post_image_favorites_path(@post_image), method: :post do %>
+          ♡<%= @post_image.favorites.count %> いいね
+        <%end%>
+      </p>
+    <%end%>
 </div>
 
 <!--投稿画像の詳細画面で、コメントを投稿できるようにする-->
@@ -49,7 +66,6 @@
   <!--NEXT Favoriteモデルのカラムの関連付け Go_to app/models/favorite.rb-->
       <!--Favoriteモデルのカラム（user_idとpost_image_id） 
       => Userモデルのid,PostImageモデルのidと関連付けが必要-->
-      
 <div>
   <p>コメント件数:<%= @post_image.post_comments.count %></p>
   <% @post_image.post_comments. each do |post_comment| %>

@@ -27,7 +27,19 @@ Rails.application.routes.draw do
             # ネストしたURLを作成 => params[:post_image_id]でPostImageのidが取得可能
   ## NEXT コメント作成用のcreateアクション作成 Go_to app/controllers/post_comments_controller.rb
   ## post_comments に追記(コメント削除用のdestroyアクション作成後) => :destroy
+  ## 追記（いいね機能のルーティング設定） => resource :favorites, only: [:create, :destory]
+        # resource(単数形) => /:idがURLに含まれなくなる。
+          # どのいいねを削除すればいいのかが特定できる 
+          # => いいねのidは含める必要がない(params[:id]を使わなくても良い
+          # それ自身のidが分からなくても、関連する他のモデルのidから特定できるといった場合に用いる
+        # $ rails routes でルーティングを確認
+        # いいね機能のコントローラを作成
+            # $ rails g controller favorites
+              # アクションを指定せず
+              # 全て小文字、複数形
+        ## NEXT いいね後の保存した後 => post_imagesのshowページへリダイレクト Go_to app/controllers/favortes_controller.rb
   resources :post_images, only: [:new, :create, :index, :show, :destroy] do
+    resource :favorites, only: [:create, :destory]
     resources :post_comments, only: [:create, :destroy]
   end
   

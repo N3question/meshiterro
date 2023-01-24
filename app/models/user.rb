@@ -17,7 +17,11 @@ class User < ApplicationRecord
     # dependent: :destroy
       # Userのデータが削除されたとき、そのUserが投稿したコメントデータも一緒に削除
   ## NEXT Go_to app/models/post_image.rb
-  has_many :post_comments, dependent: :destroy  
+  has_many :post_comments, dependent: :destroy
+  
+  ## 関連付けを追加
+  ## NEXT いいね機能のルーティングの設定 Go_to routes.rb
+  has_many :favorites, dependent: :destroy
     
   ## ユーザーごとのプロフィール画像を保存できないため追記
         # has_one_attached :profile_image
