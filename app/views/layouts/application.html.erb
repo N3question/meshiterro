@@ -5,8 +5,17 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+   
+    <!--Bootstrapの導入-->
+    <!--stylesheet_link_tag => stylesheet_pack_tagに変更-->
+      <!--_link_ => app/assets 配下のファイルを参照-->
+      <!--_pack_ => app/javascript 配下のファイルを参照-->
+          <!--【例】app/javascript/stylesheets/にmystyle.cssを作成した場合-->
+          <!--app/javascript/packs/application.js => import '../stylesheets/mystyle.css'と記述-->
+    <!--NEXT FontAwesomeの導入-->
+      <!--$ yarn add @fortawesome/fontawesome-free@5.15.4を実行-->
+      <!--Go_to app/javascript/packs/application.js-->
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 

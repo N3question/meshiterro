@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Kaminari.configure do |config|
-  ## ページあたりに表示させる件数の設定 => デフォは25件 => サーバ起動して確認
+  ## ページあたりに表示させる件数の設定 => デフォは25件 => サーバ起動して確認,NEXT Bootstrapの導入
   config.default_per_page = 5
   # config.max_per_page = nil
   # config.window = 4

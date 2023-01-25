@@ -8,6 +8,13 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 
+// 以下4行追加
+// NEXT app/views/layouts/application.html.erb
+import "jquery";
+import "popper.js";
+import "bootstrap";
+import "../stylesheets/application"
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
