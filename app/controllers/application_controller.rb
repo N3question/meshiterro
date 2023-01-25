@@ -1,4 +1,12 @@
 class ApplicationController < ActionController::Base
+  
+  ## 権限の設定
+    # ログインしていない状態でトップページ以外のアクセスされた場合は、ログイン画面へリダイレクト
+    # このコントローラに記述したことで全てのコントローラでこのメゾットが実行される
+    # :authenticatr_user! => devise側が用意しているメソッド
+  ## NEXT バリデーションを設定 Go_to app/models/post_image.rb 
+  before_action :authenticate_user!, except: [:top]
+  
   # devise利用の機能（ユーザ登録、ログイン認証など）が使われる前に,configure_permitted_parametersメソッドが実行
   before_action :configure_permitted_parameters, if: :devise_controller?
   

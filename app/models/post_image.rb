@@ -41,6 +41,11 @@ class PostImage < ApplicationRecord
     #     'no_image.jpg'
     #.  end
     # end
+    
+    ## バリデーション設定
+    ## NEXT コントローラで検出 Go_to app/controller/post_images_controller.rb
+    validates :shop_name, presence: true
+    validates :image, presence: true
   
     ## no_image.jpgをActiveStorageに格納するためにコードを書き換え
       # 上記で記述したメソッドだとRailsで画像のサイズ変更を行うことができない

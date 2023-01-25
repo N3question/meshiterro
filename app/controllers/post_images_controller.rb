@@ -18,11 +18,16 @@ class PostImagesController < ApplicationController
   ## 同時にストロングパラメータも作成
   ## NEXT ルーティングの追加
     # resources に :create を追加し完了
+  ## バリデーション設定 => #3,#4をif式に変更
+    # NEXT バリデーションによるエラーメッセージを表示 Go_to app/views/post_images/new.html.erb
   def create
     @post_image = PostImage.new(post_image_params) #1
     @post_image.user_id = current_user.id #2
-    @post_image.save #3
-    redirect_to post_images_path #4
+    if @post_image.save #3
+      redirect_to post_images_path
+    else
+      render :new #4
+    end
   end
   
   ## タイムライン上に表示する投稿データを取得できるようにする
