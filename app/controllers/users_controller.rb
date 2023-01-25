@@ -8,9 +8,12 @@ class UsersController < ApplicationController
   ## NEXT 詳細ページの作成
     #.View ページの作成
     # Go_to app/views/users/show.html.erb
+  ## ページャを実装
+    # .page(params[:page])を追加
+    # NEXT Go_to app/views/post_images/_list.html.erb
   def show
     @user = User.find(current_user.id)
-    @post_images = @user.post_images
+    @post_images = @user.post_images.page(params[:page])
   end
 
   ## 編集画面の作成 => 編集機能用のアクションを定義

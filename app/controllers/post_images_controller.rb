@@ -33,9 +33,14 @@ class PostImagesController < ApplicationController
   ## タイムライン上に表示する投稿データを取得できるようにする
     # all => メソッドの一種
       # そのモデルがやりとりしているデータベースのテーブルに保存されている、全てのレコードをまとめて取得
-  ## NEXT View => Go_to app/views/post_images/index.html.erbを
+  ## NEXT View => Go_to app/views/post_images/index.html.erb
+  ## ページャを実装
+    # 記述の変更 .all => .page(params[:page])
+      # 1ページ分の決められた数のデータだけを、新しい順に取得するように変更
+      # pageメソッドは、kaminariをインストールしたことで使用可能になったメソッド
+    # NEXT 同じくapp/controllers/users_controller.rbを編集
   def index
-    @post_images = PostImage.all
+    @post_images = PostImage.page(params[:page])
   end
 
   ## 詳細画面が表示されるように設定

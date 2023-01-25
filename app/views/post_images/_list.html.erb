@@ -29,3 +29,8 @@
   <p><%= link_to "#{post_image.post_comments.count} コメント", post_image_path(post_image.id) %></p>
 </div>
 <%end%>
+
+<!--ページャを実装-->
+<!--NEXT ページあたりに表示させる件数の設定 Go_to config/initializers/kaminari_config.rb-->
+<!--以下の記述を新たに追加-->
+<%= paginate post_images %>

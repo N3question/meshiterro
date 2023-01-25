@@ -74,3 +74,10 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 ## NEXT devise のユーザーテーブルをカスタマイズする
   # Go_to db/migrate/（年月日時分秒）_devise_create_users.rb
 gem 'devise'
+
+## Kaminariのインストール
+  # 以下記述後 $ bundle installを実行してkaminariをインストール
+  # kaminariの設定ファイルを作成 => $ rails g kaminari:config実行
+  # kaminariがページャで利用するテンプレートを作成 => $ rails g kaminari:views default実行
+  # NEXT ページャを実装 Go_to app/controllers/post_images_controller.rb
+gem 'kaminari','~>1.2.1'
