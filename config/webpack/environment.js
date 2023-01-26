@@ -7,7 +7,7 @@ module.exports = environment
 // yarnでインストールする方法を選択
 // NEXT app/javascriptの配下にstylesheetsフォルダを作成 
 // => 作成したフォルダの配下にapplication.scssファイルを作成 => そのファイルを開く
-const webpack = require("webpack")
+const webpack = require('webpack')
 environment.plugins.prepend(
   'Provide',
   new webpack.ProvidePlugin({

@@ -17,20 +17,31 @@
 <!--それぞれのファイルから、部分テンプレートファイルを呼び出す-->
   <!--Go_to post_images/index.html.erb-->
   <!--Go_to users/show.html.erb-->
-<% post_images.each do |post_image| %>
-<div>
-  <%= link_to post_image_path(post_image.id) do %>
-    <%= image_tag post_image.get_image %>
+<div class="card-list-container py-5"> <!--追加-->
+  <% post_images.each do |post_image| %>
+  <div class="card w-50 mx-auto mt-4 shadow-lg"> <!--追加-->
+    <%= link_to post_image_path(post_image.id) do %>
+      <%= image_tag post_image.get_image, class:"card-img-top"; %> <!--クラス名追加-->
+    <% end %>
+    <div class="card-body"> <!--追加-->
+      <div class="row"> <!--追加-->
+        <div class="col-2"> <!--追加-->
+          <%= image_tag post_image.user.get_profile_image(100,100), class:"mt-3 rounded-circle"; %> <!--クラス名追加-->
+        </div> <!--追加-->
+        <div class="col-10"> <!--追加-->
+          <p class="card-title"> <!--名称を削除、クラス名追加-->
+            <%= link_to(post_image_path(post_image.id), class:"text-dark") do %> <!--追加-->
+              <strong><i class="far fa-flag"></i><span><%= post_image.shop_name %></span></strong> <!--strongタグ、iタグ、spanタグ追加-->
+            <% end %> <!--追加-->
+          </p>
+          <p class="card-text">説明：<%= post_image.caption %></p> <!--クラス名追加-->
+          <span><i class="fas fa-user"></i> By <%= post_image.user.name %> ｜ </span> <!--pタグからsapnタグに変更、iタグ（クラス名付き）追加-->
+          <span><%= link_to "#{post_image.post_comments.count} コメント", post_image_path(post_image.id) %></span> <!--pタグからsapnタグに変更-->
+        </div> <!--追加-->
+      </div> <!--追加-->
+    </div> <!--追加-->
+  </div> <!--追加-->
   <%end%>
-  <p>投稿ユーザー画像:<%= image_tag post_image.user.get_profile_image(100,100) %></p>
-  <p>ショップ名:<%= post_image.shop_name %></p>
-  <P>説明:<%= post_image.caption %></P>
-  <p>ユーザーネーム:<%= post_image.user.name %></p>
-  <p><%= link_to "#{post_image.post_comments.count} コメント", post_image_path(post_image.id) %></p>
-</div>
-<%end%>
 
-<!--ページャを実装-->
-<!--NEXT ページあたりに表示させる件数の設定 Go_to config/initializers/kaminari_config.rb-->
-<!--以下の記述を新たに追加-->
 <%= paginate post_images %>
+</div> <!--追加-->
