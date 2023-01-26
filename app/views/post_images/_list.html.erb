@@ -17,6 +17,8 @@
 <!--それぞれのファイルから、部分テンプレートファイルを呼び出す-->
   <!--Go_to post_images/index.html.erb-->
   <!--Go_to users/show.html.erb-->
+  
+<!--投稿一覧を整えよう-->
 <div class="card-list-container py-5"> <!--追加-->
   <% post_images.each do |post_image| %>
   <div class="card w-50 mx-auto mt-4 shadow-lg"> <!--追加-->
@@ -31,7 +33,7 @@
         <div class="col-10"> <!--追加-->
           <p class="card-title"> <!--名称を削除、クラス名追加-->
             <%= link_to(post_image_path(post_image.id), class:"text-dark") do %> <!--追加-->
-              <strong><i class="far fa-flag"></i><span><%= post_image.shop_name %></span></strong> <!--strongタグ、iタグ、spanタグ追加-->
+              <strong><i class="far fa-flag"></i> <span><%= post_image.shop_name %></span></strong> <!--strongタグ、iタグ、spanタグ追加-->
             <% end %> <!--追加-->
           </p>
           <p class="card-text">説明：<%= post_image.caption %></p> <!--クラス名追加-->
