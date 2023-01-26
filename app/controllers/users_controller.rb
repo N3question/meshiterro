@@ -19,6 +19,13 @@ class UsersController < ApplicationController
   ## 編集画面の作成 => 編集機能用のアクションを定義
   ## NEXT app/views/usersフォルダ内に、edit.html.erbファイルを作成
   def edit
+    # アクセス制限
+    user_id = params[:id].to_i
+    unless user_id == current_user.id
+      redirect_to post_images_path
+    end
+    # ここまで
+    
     @user = User.find(params[:id])
   end
   
@@ -26,6 +33,13 @@ class UsersController < ApplicationController
   ## データを受け取るためのparamsも同時に作成
   ## NEXT ルーティングの編集 Go_to config/routes.rb
   def update
+    # アクセス制限
+    user_id = params[:id].to_i
+    unless user_id == current_user.id
+      redirect_to post_images_path
+    end
+    # ここまで
+    
     @user = User.find(params[:id])
     @user.update(user_params)
     redirect_to user_path(current_user.id)
