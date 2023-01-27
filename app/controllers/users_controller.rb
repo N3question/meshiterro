@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :is_matching_login_user, only:[:edit, :update]
   
   ## ユーザーの詳細ページを作成
       # @post_images = @user.post_images
@@ -20,12 +21,13 @@ class UsersController < ApplicationController
   ## NEXT app/views/usersフォルダ内に、edit.html.erbファイルを作成
   def edit
     # アクセス制限
-    user_id = params[:id].to_i
-    unless user_id == current_user.id
-      redirect_to post_images_path
-    end
+    # user_id = params[:id].to_i
+    # unless user_id == current_user.id
+    #   redirect_to post_images_path
+    # end
     # ここまで
-    
+    # 以下に置き換え
+    # is_matching_login_user
     @user = User.find(params[:id])
   end
   
@@ -34,15 +36,16 @@ class UsersController < ApplicationController
   ## NEXT ルーティングの編集 Go_to config/routes.rb
   def update
     # アクセス制限
-    user_id = params[:id].to_i
-    unless user_id == current_user.id
-      redirect_to post_images_path
-    end
+    # user_id = params[:id].to_i
+    # unless user_id == current_user.id
+    #   redirect_to post_images_path
+    # end
     # ここまで
-    
+    # 以下に置き換え => Go_to app/controllers/us
+    # is_matching_login_user
     @user = User.find(params[:id])
     @user.update(user_params)
-    redirect_to user_path(current_user.id)
+    redirect_to user_path(@user.id)
   end
   
   private
@@ -53,5 +56,14 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :profile_image)
   end
+  
+  # メソッドとしてまとめることでコードの量を削減
+  def is_matching_login_user
+    user_id = params[:id].to_i
+    unless user_id == current_user.id
+      redirect_to post_images_path
+    end
+  end
+  # ここまで追加
   
 end

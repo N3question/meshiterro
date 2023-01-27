@@ -38,7 +38,7 @@ Devise.setup do |config|
   # available as additional gems.
   require 'devise/orm/active_record'
 
-  # ==> Configuration for any authentication mechanism
+  # ==> Configuration for any authentication mechanism # 任意の認証メカニズムの構成
   # Configure which keys are used when authenticating a user. The default is
   # just :email. You can configure it to use [:username, :subdomain], so for
   # authenticating a user, both parameters are required. Remember that those
@@ -46,7 +46,7 @@ Devise.setup do |config|
   # session. If you need permissions, you should implement that in a before filter.
   # You can also supply a hash where the value is a boolean determining whether
   # or not authentication should be aborted when the value is not present.
-  # config.authentication_keys = [:email]
+  config.authentication_keys = [:name] # コメントアウトを解除。ログイン時のカラムを変更 :email => :name
 
   # Configure parameters from the request object used for authentication. Each entry
   # given should be a request method and it will automatically be passed to the
